@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Commissioner } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const inter = Commissioner({ subsets: [] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-[var(--blue-medium)]`}>
         <Navbar/>
         {children}
+        <Footer/>
         </body>
     </html>
   );

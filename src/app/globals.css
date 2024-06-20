@@ -16,7 +16,6 @@
   --font-weight-extraLight: 200;
 }
 .container {
-  padding: 0 24px;
   width: 100%;
 }
 
@@ -28,7 +27,6 @@ p {
   .container {
     max-width: 1152px;
     width: 100%;
-    padding: 0 24px;
   }
 }
 .dosis {
