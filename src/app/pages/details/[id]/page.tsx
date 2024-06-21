@@ -70,9 +70,9 @@ export default function Details() {
             <Image
               src={posterUrl}
               alt={title}
-              width={198}
+              width={1000}
               height={297}
-              className="rounded-xl"
+              className="rounded-xl w-[198px] h-[297px] mx-auto md:mx-none"
             />
           )}
           <div className="flex flex-col gap-6">
