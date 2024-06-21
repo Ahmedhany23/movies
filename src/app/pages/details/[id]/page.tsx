@@ -65,7 +65,7 @@ export default function Details() {
         backgroundImage: `linear-gradient(rgba(16, 28, 45, 0.565) 8%, rgba(248, 248, 248, 0.02), rgb(62, 80, 91) 90%), url(${backdropUrl})`,
       }} className="  fixed min-h-screen w-full md:bg-[50%] bg-no-repeat bg-cover  top-0 bottom-0 left-0 right-0"></div>
       <div className="container mx-auto detailMovie-container relative top-[50px]">
-        <div className="flex gap-10 mb-10">
+        <div className="flex flex-col md:flex-row gap-10 mb-10">
           {poster_path && (
             <Image
               src={posterUrl}
