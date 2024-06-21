@@ -22,7 +22,7 @@ export default function CategoriesGrid() {
   return (
     <div className="container mx-auto py-10">
       <p className="text-xl">Categories</p>
-      <div className=" grid grid-cols-1 max-w-[200px] mx-auto sm:max-w-none  sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 text-center mt-5 gap-3">
+      <div className=" grid grid-cols-1  mx-auto sm:max-w-none  sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 text-center mt-5 gap-3">
       {categories.map((c:any) => (
         <div key={c.id} className="text-white px-5 py-4 bg-[var(--light-color)] rounded-2xl hover:scale-105 duration-200 ">
             <Link href={`/pages/categorie/${c.id}`}>
