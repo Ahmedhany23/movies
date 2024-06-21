@@ -31,13 +31,13 @@ export default function MovieCard({movies,path}:any) {
           spaceBetween={0}
           breakpoints={{
             640: {
-              slidesPerView: 1,
-            },
-            768: {
               slidesPerView: 2,
             },
+            768: {
+              slidesPerView: 6,
+            },
             1024: {
-              slidesPerView: 4,
+              slidesPerView: 7,
             },
             1200: {
               slidesPerView: 8,

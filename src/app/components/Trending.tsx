@@ -17,7 +17,7 @@ export default function Trending() {
     getTrending();
   }, []);
   return (
-    <div className=" container mx-auto py-16">
+    <div className=" container mx-auto ">
       <div className="flex justify-between py-4">
         <h1 className="text-white font-semibold text-xl">Trending</h1>
         <button className="text-white border px-2 rounded-xl hover:bg-[var(--light-color)] duration-150">

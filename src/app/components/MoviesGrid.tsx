@@ -6,7 +6,7 @@ import { FaStar } from "react-icons/fa";
 const image = "https://image.tmdb.org/t/p/w500";
 export default function MoviesGrid({movies}:any) {
   return (
-    <div className=" grid md:gap-[20px] xl:grid-cols-7 lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-3 grid-cols-1 place-content-center mx-auto">
+    <div className=" grid md:gap-[10px]  lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-3 grid-cols-1 place-content-center text-center mx-auto">
     {movies &&
     movies.map((m: any, i: number) => (
       <div

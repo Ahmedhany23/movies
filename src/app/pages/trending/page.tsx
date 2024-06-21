@@ -16,7 +16,7 @@ export default function Trending() {
   }, []);
  
   return (
-    <main className="container mx-auto mt-32 lg:mt-16   ">
+    <main className="container mx-auto mt-32 lg:mt-16">
         <p className="text-xl mb-4">Trending</p>
         <MoviesGrid movies={movies}/>
      
