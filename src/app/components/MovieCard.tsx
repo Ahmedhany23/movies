@@ -61,8 +61,8 @@ export default function MovieCard({movies,path}:any) {
                 <Image
                   src={image + m.poster_path}
                   alt={m.title}
-                  width={1000}
-                  height={600}
+                  width={101}
+                  height={100}
                   priority={true}
                    loading="eager"
                   className=" w-[150px!important] h-[225px] rounded-xl "
