@@ -2,17 +2,16 @@
 import { useState, useEffect } from "react";
 import MoviesGrid from "@/app/components/MoviesGrid";
 import Loading from "@/app/components/Loading";
-import { useDispatch } from "react-redux";
 import { getTrending } from "@/app/redux/actions/movieAction";
-import { useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/app/redux/hooks/hooks";
 
 export default function Trending() {
   const [movies, setMovies] = useState<any>([]);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getTrending());
   });
-  const dataMovies = useSelector((state: any) => state.movies);
+  const dataMovies = useAppSelector((state: any) => state.movies);
   useEffect(() => {
     setMovies(dataMovies);
   }, [dataMovies]);

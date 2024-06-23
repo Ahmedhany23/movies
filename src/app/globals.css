@@ -80,9 +80,8 @@ p {
   transition: 0.2s ease-in-out;
 }
 
-.recommend-container {
-  background-image: linear-gradient(#101c2db7, #101c2da2),
-    url(https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+.overlay {
+  background-image: linear-gradient(#101c2db7, #101c2da2);
 }
 .detailMovie-container {
   

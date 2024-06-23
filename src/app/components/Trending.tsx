@@ -3,18 +3,18 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import Loading from "./Loading";
-import { useDispatch, useSelector } from "react-redux";
 import { getTrending } from "../redux/actions/movieAction";
+import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
 
 
 
 export default function Trending() {
   const [movies, setMovies] = useState<any>([]);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getTrending());
   }, [dispatch]);
-  const dataMovies = useSelector((state: any) => state.movies);
+  const dataMovies = useAppSelector((state: any) => state.movies);
   useEffect(() => {
     setMovies(dataMovies);
   }, [dataMovies]);

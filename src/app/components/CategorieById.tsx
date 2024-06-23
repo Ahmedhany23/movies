@@ -4,17 +4,17 @@ import MoviesGrid from "@/app/components/MoviesGrid";
 import Pagination from "@/app/components/Pagination";
 import Loading from "./Loading";
 import { getPage } from "../redux/actions/movieAction";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
 export default function CategorieComponent({ id }: any) {
   const [currentpage, setCurrentpage] = useState(1);
   const [categories, setCategories] = useState(null);
   const [pages, setPages] = useState(null);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getPage(id, currentpage));
   });
-  const Movie = useSelector((state: any) => state.movies);
-  const pageCount = useSelector((state: any) => state.pageCount);
+  const Movie = useAppSelector((state: any) => state.movies);
+  const pageCount = useAppSelector((state: any) => state.pageCount);
   useEffect(() => {
     setCategories(Movie);
     setPages(pageCount);

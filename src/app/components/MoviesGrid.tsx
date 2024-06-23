@@ -20,6 +20,7 @@ export default function MoviesGrid({movies}:any) {
             width={1000}
             height={600}
             priority={true}
+             loading="eager"
             className=" sm:w-[150px!important] sm:h-[225px] rounded-xl "
           />
           <div className="flex flex-col mt-1  ">
