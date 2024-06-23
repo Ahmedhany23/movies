@@ -1,52 +1,55 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useSearchParams } from "next/navigation";
 import MoviesGrid from "@/app/components/MoviesGrid";
+import { useAppDispatch } from "../page";
+import { useSelector } from "react-redux";
+import { getAllMovie, getPageBySearch } from "../redux/actions/movieAction";
+import Loading from "./Loading";
+import Pagination from "./Pagination";
 
 export default function SearchByTitle() {
   const [movies, setMovies] = useState<any[]>([]);
- 
+  const [pages, setPages] = useState(0);
+  const [page, setPage] = useState(1);
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
-
-  const getMoviesBySearch = async (query: string) => {
-    try {
-      const res = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=52ef927bbeb21980cd91386a29403c78&language=en-US&query=${query}`
-      );
-      setMovies(res.data.results);
-    } catch (error) {
-      console.error("Failed to fetch movies:", error);
-    }
-  };
-  const getAllMovies = async () => {
-    try {
-      const res = await axios.get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=52ef927bbeb21980cd91386a29403c78&language=en-US`
-      );
-      setMovies(res.data.results);
-    } catch (error) {
-      console.error("Failed to fetch movies:", error);
-    }
-  };
+  const dispatch = useAppDispatch();
+  const dataSearch = useSelector((state: any) => state.movies);
+  const pageCount = useSelector((state: any) => state.pageCount);
 
   useEffect(() => {
-    if (query) {
-      getMoviesBySearch(query);
-    }
-    else{
-        getAllMovies();
-    }
-  }, [query]);
+    const fetchData = async () => {
+      if (query === "") {
+        await dispatch(getAllMovie(page));
+      } else {
+        await dispatch(getPageBySearch(query, page));
+      }
+    };
+
+    fetchData();
+  }, [query, page, dispatch]);
+
+  useEffect(() => {
+    setMovies(dataSearch);
+    setPages(pageCount);
+  }, [dataSearch, pageCount]);
+
 
   return (
-    <div className="container mx-auto mt:32 lg:mt-16">
-    
-        <p className="text-2xl mb-5">Search Results</p>
-        <MoviesGrid movies={movies} />
-      
+    <div className="container mx-auto mt-32 lg:mt-16">
+      <p className="text-2xl mb-5">Search Results</p>
+      {movies.length >= 1 ? <MoviesGrid movies={movies} /> : <Loading />}
+      <Pagination
+        getPage={null}
+        getPageBySearch={getPageBySearch}
+        getAllMovie={query === "" ? getAllMovie : null}
+        count={pages}
+        currentpage={page}
+        query={query}
+        id={null}
+      />
     </div>
   );
 }

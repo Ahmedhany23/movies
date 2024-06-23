@@ -10,7 +10,7 @@ import Loading from "@/app/components/Loading";
 export default function Details() {
   const { id } = useParams();
   const [movie, setMovie] = useState<any>(null);
-  const [movies, setMovies] = useState<any>(null);
+  const [movies, setMovies] = useState<any>([]);
   useEffect(() => {
     const getMovie = async () => {
       try {
@@ -37,7 +37,7 @@ export default function Details() {
   }, [id]);
 
   if (!movie) {
-    return <Loading/>;
+    return <Loading />;
   }
 
   const {
@@ -57,13 +57,13 @@ export default function Details() {
   const posterUrl = poster_path ? imageBaseUrl + poster_path : "";
 
   return (
-    <main
-     
-      className=" relative"
-    >
-      <div  style={{
-        backgroundImage: `linear-gradient(rgba(16, 28, 45, 0.565) 8%, rgba(248, 248, 248, 0.02), rgb(62, 80, 91) 90%), url(${backdropUrl})`,
-      }} className="  fixed min-h-screen w-full md:bg-[50%] bg-no-repeat bg-cover  top-0 bottom-0 left-0 right-0"></div>
+    <main className=" relative">
+      <div
+        style={{
+          backgroundImage: `linear-gradient(rgba(16, 28, 45, 0.565) 8%, rgba(248, 248, 248, 0.02), rgb(62, 80, 91) 90%), url(${backdropUrl})`,
+        }}
+        className="  fixed min-h-screen w-full md:bg-[50%] bg-no-repeat bg-cover  top-0 bottom-0 left-0 right-0"
+      ></div>
       <div className="container mx-auto detailMovie-container relative top-[50px]">
         <div className="flex flex-col md:flex-row gap-10 mb-10">
           {poster_path && (
@@ -72,6 +72,7 @@ export default function Details() {
               alt={title}
               width={1000}
               height={297}
+              priority={true}
               className="rounded-xl w-[198px] h-[297px] mx-auto md:mx-none"
             />
           )}
@@ -83,7 +84,7 @@ export default function Details() {
                 <p>{overview}</p>
                 <div className="flex gap-3 py-3">
                   {genres.length > 0 &&
-                    genres.map((g:any) => (
+                    genres.map((g: any) => (
                       <div key={g.id}>
                         <p className="font-medium text-lg">{g.name}</p>
                       </div>
@@ -97,13 +98,14 @@ export default function Details() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col">
-          <p className="text-2xl">Similar movies</p>
-          <div className="mt-5">
-          <MovieCard movies={movies} path={"/pages/details/"} />
+        {movies.length >= 1 && (
+          <div className="flex flex-col">
+            <p className="text-2xl">Similar movies</p>
+            <div className="mt-5">
+              <MovieCard movies={movies} path={"/pages/details/"} />
+            </div>
           </div>
-          
-        </div>
+        )}
       </div>
     </main>
   );

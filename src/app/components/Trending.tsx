@@ -1,31 +1,36 @@
 "use client";
-import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
-const image = "https://image.tmdb.org/t/p/w500";
+import Loading from "./Loading";
+import { useSelector } from "react-redux";
+import { getTrending } from "../redux/actions/movieAction";
+
+import { useAppDispatch } from "../page";
 
 export default function Trending() {
   const [movies, setMovies] = useState<any>([]);
-  const getTrending = async () => {
-    const res = await axios.get(
-      "https://api.themoviedb.org/3/trending/movie/day?api_key=52ef927bbeb21980cd91386a29403c78&language=en-US"
-    );
-    setMovies(res.data.results);
-  };
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    getTrending();
-  }, []);
+    dispatch(getTrending());
+  }, [dispatch]);
+  const dataMovies = useSelector((state: any) => state.movies);
+  useEffect(() => {
+    setMovies(dataMovies);
+  }, [dataMovies]);
   return (
     <div className=" container mx-auto ">
       <div className="flex justify-between py-4">
         <h1 className="text-white font-semibold text-xl">Trending</h1>
         <button className="text-white border px-2 rounded-xl hover:bg-[var(--light-color)] duration-150">
-          <Link href='/pages/trending'>See More</Link>
-          
+          <Link href="/pages/trending">See More</Link>
         </button>
       </div>
-     <MovieCard movies={movies} path={"pages/details/"}/>
+      {movies.length >= 1 ? (
+        <MovieCard movies={movies} path={"pages/details/"} />
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 }

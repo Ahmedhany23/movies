@@ -63,6 +63,7 @@ export default function MovieCard({movies,path}:any) {
                   alt={m.title}
                   width={1000}
                   height={600}
+                  priority={true}
                   className=" w-[150px!important] h-[225px] rounded-xl "
                 />
                 <div className="flex flex-col mt-1  ">

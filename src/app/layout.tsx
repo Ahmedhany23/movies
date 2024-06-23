@@ -3,6 +3,7 @@ import { Commissioner } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import StoreProvider from "./StoreProvider";
 
 const inter = Commissioner({ subsets: [] });
 
@@ -20,7 +21,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} bg-[var(--blue-medium)]`}>
         <Navbar/>
-        {children}
+      <StoreProvider>
+      {children}
+      
+      </StoreProvider>
+       
+        
         <Footer/>
         </body>
     </html>

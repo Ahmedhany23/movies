@@ -1,6 +1,11 @@
+"use client"
 import CategoriesGrid from "./components/CategoriesGrid";
 import Movieslist from "./components/Movieslist";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "./redux/store/store";
 
+
+export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 
 export default function Home() {
 

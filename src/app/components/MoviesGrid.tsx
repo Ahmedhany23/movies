@@ -6,12 +6,12 @@ import { FaStar } from "react-icons/fa";
 const image = "https://image.tmdb.org/t/p/w500";
 export default function MoviesGrid({movies}:any) {
   return (
-    <div className=" grid md:gap-[10px]  lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-3 grid-cols-1 place-content-center text-center mx-auto">
+    <div className=" grid   lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-3 grid-cols-1  mx-auto">
     {movies &&
     movies.map((m: any, i: number) => (
       <div
         key={i}
-        className=" px-2 md:w-[170px!important] hover:scale-95 duration-200 cursor-pointer "
+        className=" px-2 sm:w-[170px!important] hover:scale-95 duration-200 cursor-pointer "
       >
         <Link href={"/pages/details/" + m.id}>
           <Image
@@ -19,7 +19,8 @@ export default function MoviesGrid({movies}:any) {
             alt={m.title}
             width={1000}
             height={600}
-            className=" md:w-[150px!important] md:h-[225px] rounded-xl "
+            priority={true}
+            className=" sm:w-[150px!important] sm:h-[225px] rounded-xl "
           />
           <div className="flex flex-col mt-1  ">
             <p className="text-wrap m-w-[120px] overflow-hidden text-ellipsis font-light text-[14px] ">
