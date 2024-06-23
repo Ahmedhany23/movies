@@ -3,14 +3,14 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import Loading from "./Loading";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getTrending } from "../redux/actions/movieAction";
 
-import { useAppDispatch } from "../page";
+
 
 export default function Trending() {
   const [movies, setMovies] = useState<any>([]);
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTrending());
   }, [dispatch]);

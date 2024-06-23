@@ -1,10 +1,10 @@
 "use client";
 
 import ReactPaginate from "react-paginate";
-import { useAppDispatch } from "../page";
+import { useDispatch } from "react-redux";
 
 export default function Pagination({ getPage, getPageBySearch, getAllMovie, count, currentpage, query, id }: any) {
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   const pageCount = count;
 
   const handlePageClick = (data: any) => {

@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import MoviesGrid from "@/app/components/MoviesGrid";
-import { useAppDispatch } from "../page";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllMovie, getPageBySearch } from "../redux/actions/movieAction";
 import Loading from "./Loading";
 import Pagination from "./Pagination";
@@ -15,7 +14,7 @@ export default function SearchByTitle() {
   const [page, setPage] = useState(1);
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
   const dataSearch = useSelector((state: any) => state.movies);
   const pageCount = useSelector((state: any) => state.pageCount);
 
