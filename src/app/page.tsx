@@ -12,7 +12,8 @@ export default function Home() {
           src={header}
           alt="image"
           className="absolute h-[250px] w-full rounded-3xl z-0"
-          loading="lazy"
+          loading="eager"
+          priority
           width={1000}
           height={1000}
         />
