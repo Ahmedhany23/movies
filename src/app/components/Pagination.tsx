@@ -15,7 +15,7 @@ export default function Pagination({ getPage, getPageBySearch, getAllMovie, coun
     } else if (getPageBySearch) {
       dispatch(getPageBySearch(query, selectedPage));
     } else if (getPage) {
-      dispatch(getPage(id, selectedPage));
+     getPage( selectedPage);
     }
   };
 
