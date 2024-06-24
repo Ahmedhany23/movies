@@ -1,21 +1,21 @@
 "use client";
 
 import ReactPaginate from "react-paginate";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../redux/hooks/hooks";
+import { useEffect } from "react";
 
 export default function Pagination({ getPage, getPageBySearch, getAllMovie, count, currentpage, query, id }: any) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const pageCount = count;
 
   const handlePageClick = (data: any) => {
     const selectedPage = data.selected + 1;
-
     if (getAllMovie) {
       dispatch(getAllMovie(selectedPage));
     } else if (getPageBySearch) {
       dispatch(getPageBySearch(query, selectedPage));
     } else if (getPage) {
-     getPage( selectedPage);
+     dispatch(getPage(id, selectedPage));
     }
   };
 

@@ -9,15 +9,18 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
 
 
 export default function Trending() {
-  const [movies, setMovies] = useState<any>([]);
+  const [trending, setTrending] = useState<any>(null);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(getTrending());
-  }, [dispatch]);
-  const dataMovies = useAppSelector((state: any) => state.movies);
+    const fetchData = async () =>{
+     await dispatch(getTrending());
+    }
+   fetchData();
+  });
+  const dataMovies = useAppSelector((state: any) => state.moviesReducer.movies);
   useEffect(() => {
-    setMovies(dataMovies);
-  }, [dataMovies]);
+    setTrending(dataMovies);
+  }, [dataMovies,trending]);
   return (
     <div className=" container mx-auto ">
       <div className="flex justify-between py-4">
@@ -26,8 +29,8 @@ export default function Trending() {
           <Link href="/pages/trending">See More</Link>
         </button>
       </div>
-      {movies.length >= 1 ? (
-        <MovieCard movies={movies} path={"pages/details/"} />
+      {trending ? (
+        <MovieCard movies={trending} path={"pages/details/"} />
       ) : (
         <Loading />
       )}

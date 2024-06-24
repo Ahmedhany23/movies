@@ -15,8 +15,10 @@ export default function SearchByTitle() {
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
   const dispatch = useAppDispatch();
-  const dataSearch = useAppSelector((state: any) => state.movies);
-  const pageCount = useAppSelector((state: any) => state.pageCount);
+  const dataSearch = useAppSelector((state: any) => state.moviesReducer.movies);
+  const pageCount = useAppSelector(
+    (state: any) => state.moviesReducer.pageCount
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +36,6 @@ export default function SearchByTitle() {
     setMovies(dataSearch);
     setPages(pageCount);
   }, [dataSearch, pageCount]);
-
 
   return (
     <div className="container mx-auto mt-32 lg:mt-16">

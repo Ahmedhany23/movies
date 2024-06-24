@@ -1,21 +1,25 @@
 "use client";
 import axios from "axios";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Loading from "./Loading";
+import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
+import { getCategories } from "../redux/actions/movieAction";
 
 export default function CategoriesGrid() {
   const [categories, setCategories] = useState<any>([]);
-  const getcategories = async () => {
-    const res = await axios.get(
-      "https://api.themoviedb.org/3/genre/movie/list?api_key=52ef927bbeb21980cd91386a29403c78&language=en"
-    );
-
-    setCategories(res.data.genres);
-  };
+  const dispatch = useAppDispatch();
   useEffect(() => {
-    getcategories();
-  }, []);
+    
+      dispatch(getCategories());
+   
+  });
+  const list = useAppSelector((state) => state.categorieReducer.categories);
+  useEffect(() => {
+    setCategories(list);
+  }, [list]);
+
+
   if (!categories) {
     return <Loading />;
   }
@@ -26,7 +30,7 @@ export default function CategoriesGrid() {
         {categories.map((c: any) => (
           <div
             key={c.id}
-            className="text-white px-5 py-4 bg-[var(--light-color)] rounded-2xl hover:scale-105 duration-200 "
+            className="text-white px-5 py-4 bg-[var(--light-color)] rounded-2xl hover:scale-105 duration-200  whitespace-nowrap"
           >
             <Link href={`/pages/categorie/${c.id}`}>{c.name}</Link>
           </div>

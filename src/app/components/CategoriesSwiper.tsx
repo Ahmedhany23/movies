@@ -5,32 +5,32 @@ import { useEffect, useState, useRef } from "react";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "swiper/modules";
+import {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Autoplay,
+} from "swiper/modules";
 import "swiper/css/pagination";
+import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
+import { getCategories } from "../redux/actions/movieAction";
 
 export default function CategoriesSwiper({ id }: any) {
   const [categories, setCategories] = useState<any[]>([]);
-  const swiperRef = useRef<any>(null);
-
-  const getCategories = async () => {
-    const res = await axios.get(
-      "https://api.themoviedb.org/3/genre/movie/list?api_key=52ef927bbeb21980cd91386a29403c78&language=en"
-    );
-    setCategories(res.data.genres);
-  };
+ 
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    getCategories();
-  }, [categories]);
+   
+      dispatch(getCategories());
+  
+  });
 
+  const list = useAppSelector((state) => state.categorieReducer.categories);
   useEffect(() => {
-    if (swiperRef.current) {
-      const activeIndex = categories.findIndex((c) => c.id === id);
-      if (activeIndex !== -1) {
-        swiperRef.current.slideTo(activeIndex);
-      }
-    }
-  }, [id, categories]);
+    setCategories(list);
+  }, [list]);
 
   return (
     <div className="lg:mx-3 relative mt-10">
@@ -42,7 +42,6 @@ export default function CategoriesSwiper({ id }: any) {
       </div>
 
       <Swiper
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
         spaceBetween={0}
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
         speed={700}
