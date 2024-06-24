@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Loading from "./Loading";
-import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
-import { getCategories } from "../redux/actions/movieAction";
+import Loading from "../Loading";
+import { useAppDispatch, useAppSelector } from "@/app/redux/hooks/hooks";
+import { getCategories } from "@/app/redux/actions/movieAction";
 
 export default function CategoriesGrid() {
   const [categories, setCategories] = useState<any>([]);

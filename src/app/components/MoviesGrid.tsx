@@ -32,7 +32,7 @@ export default function MoviesGrid({movies}:any) {
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-1">
                 <FaStar className="text-[#e0b20f]" />
-                <p>{m.vote_average}</p>
+                <p>{m.vote_average.toFixed(1)}</p>
               </div>
               <div>
                 <p>{m.release_date?.slice(0, 4)}</p>

@@ -3,9 +3,9 @@ import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import MoviesGrid from "@/app/components/MoviesGrid";
 import Pagination from "@/app/components/Pagination";
-import Loading from "./Loading";
-import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
-import { getPage } from "../redux/actions/movieAction";
+import Loading from "../Loading";
+import { useAppDispatch, useAppSelector } from "@/app/redux/hooks/hooks";
+import { getPage } from "@/app/redux/actions/movieAction";
 
 export default function CategorieComponent({ id }: any) {
     const [currentpage, setCurrentpage] = useState(1);

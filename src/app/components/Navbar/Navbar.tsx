@@ -1,14 +1,14 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 import { Dosis } from "next/font/google";
 import { IoIosSearch } from "react-icons/io";
 import Link from "next/link";
-
+import "./style.css";
 const inter = Dosis({ subsets: [] });
 
 export default function Navbar() {
-  const router = useRouter(); 
+  const router = useRouter();
   const [inputValue, setInputValue] = useState("");
 
   function handleChangeInput(event: any) {
@@ -17,7 +17,7 @@ export default function Navbar() {
 
   function handleSubmit(event: any) {
     event.preventDefault();
-    router.push(`/pages/search?query=${inputValue}`); 
+    router.push(`/pages/search?query=${inputValue}`);
   }
 
   return (
@@ -25,12 +25,17 @@ export default function Navbar() {
       <div className="flex gap-[20px] flex-col lg:flex-row lg:justify-between lg:items-center container mx-auto">
         <div>
           <Link href="/">
-            <h1 className={`text-[34px] text-[#f8f8f8] font-light ${inter.className}`}>
+            <h1
+              className={`text-[34px] text-[#f8f8f8] font-light ${inter.className}`}
+            >
               movie<strong className="font-semibold">pick</strong>
             </h1>
           </Link>
         </div>
-        <form onSubmit={handleSubmit} className="mt-0 flex items-center text-center relative">
+        <form
+          onSubmit={handleSubmit}
+          className="mt-4 flex items-center text-center relative"
+        >
           <input
             onChange={handleChangeInput}
             value={inputValue}

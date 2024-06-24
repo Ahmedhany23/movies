@@ -1,4 +1,4 @@
-import CategoriesGrid from "./components/CategoriesGrid";
+import CategoriesGrid from "@/app/components/Categories/CategoriesGrid";
 import Movieslist from "./components/Movieslist";
 import Image from "next/image";
 import header from "@/app/assets/headerimage.webp";

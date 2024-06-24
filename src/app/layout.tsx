@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Commissioner } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer";
 import StoreProvider from "./StoreProvider";
 
@@ -20,15 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-[var(--blue-medium)]`}>
-        <Navbar/>
-      <StoreProvider>
-      {children}
-      
-      </StoreProvider>
-       
-        
-        <Footer/>
-        </body>
+        <Navbar />
+        <StoreProvider>{children}</StoreProvider>
+
+        <Footer />
+      </body>
     </html>
   );
 }

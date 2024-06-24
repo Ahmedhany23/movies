@@ -1,6 +1,6 @@
 "use client";
-import CategorieComponent from "@/app/components/CategorieById";
-import CategoriesSwiper from "@/app/components/CategoriesSwiper";
+import CategorieComponent from "@/app/components/Categories/CategorieById";
+import CategoriesSwiper from "@/app/components/Categories/CategoriesSwiper";
 import { useParams } from "next/navigation";
 
 
