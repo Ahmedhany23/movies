@@ -30,7 +30,7 @@ export default function Trending() {
       <div className="flex justify-between py-4">
         <h1 className="text-white font-semibold text-xl">Trending</h1>
         <button className="text-white border px-2 rounded-xl hover:bg-[var(--light-color)] duration-150">
-          <Link href="/pages/trending">See More</Link>
+          <Link href="/pages/trending" prefetch={false}>See More</Link>
         </button>
       </div>
       {trending ? (

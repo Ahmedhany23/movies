@@ -14,7 +14,7 @@ export default function MoviesGrid({movies}:any) {
         key={i}
         className=" px-2 w-[200px] sm:w-[170px!important] hover:scale-95 duration-200 cursor-pointer "
       >
-        <Link href={"/pages/details/" + m.id}>
+        <Link href={"/pages/details/" + m.id} prefetch={false}>
           <Image
             src={image + m.poster_path}
             alt={m.title}

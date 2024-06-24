@@ -22,10 +22,12 @@ export default function CategoriesSwiper({ id }: any) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-   
-      dispatch(getCategories());
+    const fetchData =  async () => {
+     await dispatch(getCategories());
+    }
+        fetchData();
   
-  });
+  },[dispatch]);
 
   const list = useAppSelector((state) => state.categorieReducer.categories);
   useEffect(() => {

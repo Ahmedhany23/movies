@@ -57,7 +57,7 @@ export default function MovieCard({movies,path}:any) {
               key={i}
               className=" px-2 w-[170px!important] hover:scale-95 duration-200 cursor-pointer "
             >
-              <Link href={path + m.id}>
+              <Link href={path + m.id}  prefetch={false}>
                 <Image
                   src={image + m.poster_path}
                   alt={m.title}

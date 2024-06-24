@@ -14,16 +14,17 @@ export default function CategorieComponent({ id }: any) {
     const dispatch = useAppDispatch();
     const isMounted = useRef(false);
 
-    const fetchData = async () => {
-        await dispatch(getPage(id, currentpage));
-    };
-
+  
+    
     useEffect(() => {
+        const fetchData = async () => {
+            await dispatch(getPage(id, currentpage));
+        };
         if (!isMounted.current) {
             fetchData();
             isMounted.current = true;
         }
-    });
+    },[dispatch]);
 
     const categorie = useAppSelector((state) => state.moviesReducer.movies);
     const page = useAppSelector((state) => state.moviesReducer.pageCount);

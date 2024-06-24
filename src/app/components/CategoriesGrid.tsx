@@ -36,7 +36,7 @@ export default function CategoriesGrid() {
             key={c.id}
             className="text-white px-5 py-4 bg-[var(--light-color)] rounded-2xl hover:scale-105 duration-200 whitespace-nowrap"
           >
-            <Link href={`/pages/categorie/${c.id}`}>{c.name}</Link>
+            <Link href={`/pages/categorie/${c.id}`}  prefetch={false}>{c.name}</Link>
           </div>
         ))}
       </div>
