@@ -6,12 +6,12 @@ import { getTrending } from "@/app/redux/actions/movieAction";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks/hooks";
 
 export default function Trending() {
-  const [movies, setMovies] = useState<any>([]);
+  const [movies, setMovies] = useState<any>(null);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getTrending());
-  });
-  const dataMovies = useAppSelector((state: any) => state.movies);
+  },[dispatch]);
+  const dataMovies = useAppSelector((state: any) => state.moviesReducer.movies);
   useEffect(() => {
     setMovies(dataMovies);
   }, [dataMovies]);
@@ -19,7 +19,7 @@ export default function Trending() {
   return (
     <main className="container mx-auto mt-32 lg:mt-16">
       <p className="text-xl mb-4">Trending</p>
-      {movies.length >= 1 ? (
+      {movies? (
         <MoviesGrid movies={movies} path={"pages/details/"} />
       ) : (
         <Loading />

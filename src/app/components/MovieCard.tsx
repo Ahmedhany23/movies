@@ -29,22 +29,9 @@ export default function MovieCard({movies,path}:any) {
 
         <Swiper
           spaceBetween={0}
-          breakpoints={{
-            640: {
-              slidesPerView: 2,
-            },
-            768: {
-              slidesPerView: 6,
-            },
-            1024: {
-              slidesPerView: 7,
-            },
-            1200: {
-              slidesPerView: 8,
-            },
-          }}
+         slidesPerView="auto"
           modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-          speed={700}
+          speed={200}
           loop
           navigation={{
             nextEl: ".swiper-button-next",
