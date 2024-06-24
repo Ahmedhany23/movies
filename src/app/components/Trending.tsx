@@ -6,23 +6,27 @@ import Loading from "./Loading";
 import { getTrending } from "../redux/actions/movieAction";
 import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
 
-
-
 export default function Trending() {
   const [trending, setTrending] = useState<any>(null);
   const dispatch = useAppDispatch();
+
+
   useEffect(() => {
-    const fetchData = async () =>{
-     await dispatch(getTrending());
+    const fetchData = async () => {
+      await dispatch(getTrending());
     }
-   fetchData();
-  });
+    fetchData();
+  }, [dispatch]);
+
   const dataMovies = useAppSelector((state: any) => state.moviesReducer.movies);
+
+
   useEffect(() => {
     setTrending(dataMovies);
-  }, [dataMovies,trending]);
+  }, [dataMovies]);
+
   return (
-    <div className=" container mx-auto ">
+    <div className="container mx-auto">
       <div className="flex justify-between py-4">
         <h1 className="text-white font-semibold text-xl">Trending</h1>
         <button className="text-white border px-2 rounded-xl hover:bg-[var(--light-color)] duration-150">
