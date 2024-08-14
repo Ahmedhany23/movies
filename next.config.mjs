@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-        domains: ['image.tmdb.org'],
-      },
+  env: {
+    API_KEY: "52ef927bbeb21980cd91386a29403c78",
+  },
+  images: {
+    domains: ["image.tmdb.org"],
+  },
 };
 
 export default nextConfig;

@@ -6,41 +6,34 @@ import Pagination from "@/app/components/Pagination";
 import Loading from "../Loading";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks/hooks";
 import { getPage } from "@/app/redux/actions/movieAction";
-
+import { useCategoryById } from "@/app/services/useCatgorieById";
+import { useCurrentPage } from "@/app/context/useCurrentPage";
 export default function CategorieComponent({ id }: any) {
-    const [currentpage, setCurrentpage] = useState(1);
-    const [categories, setCategories] = useState(null);
-    const [pages, setPages] = useState(null);
-    const dispatch = useAppDispatch();
-    const isMounted = useRef(false);
 
-  
-    
-    useEffect(() => {
-        const fetchData = async () => {
-            await dispatch(getPage(id, currentpage));
-        };
-        if (!isMounted.current) {
-            fetchData();
-            isMounted.current = true;
-        }
-    },[dispatch]);
+  const [categories, setCategories] = useState(null);
+  const [pages, setPages] = useState(null);
+  const { currentPage } = useCurrentPage();
+  const { data, isLoading , isFetching } = useCategoryById(id, currentPage);
 
-    const categorie = useAppSelector((state) => state.moviesReducer.movies);
-    const page = useAppSelector((state) => state.moviesReducer.pageCount);
 
-    useEffect(() => {
-        setCategories(categorie);
-        setPages(page);
-    }, [categorie, page]);
 
-    if (!categories) {
-        return <Loading />;
-    }
+
+
+  if (isLoading) {
     return (
-        <div className="pt-4 mb-10 container mx-auto mt-6">
-            <MoviesGrid movies={categories} />
-            <Pagination getPage={getPage} count={pages} currentpage={currentpage} id={id} />
-        </div>
+      <div className="flex items-center justify-center min-h-screen">
+        <Loading />
+      </div>
     );
+  }
+  return (
+    <div className="pt-4 mb-10 container mx-auto mt-6">
+      <MoviesGrid movies={data} isLoading={isFetching} />
+      <Pagination
+        getPage={useCategoryById}
+        count={data.total_pages}
+        id={id}
+      />
+    </div>
+  );
 }

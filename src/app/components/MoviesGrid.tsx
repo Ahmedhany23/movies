@@ -1,15 +1,19 @@
 import Link from "next/link"
 import Image from "next/image"
 import { FaStar } from "react-icons/fa";
-
+import Loading from "./Loading";
 
 const image = "https://image.tmdb.org/t/p/w500";
-export default function MoviesGrid({movies}:any) {
+
+export default function MoviesGrid({movies,isLoading}:any) {
+  if(isLoading){
+    return <div className="min-h-screen flex items-center justify-center"><Loading/></div> 
+  }
   return (
     <div className="flex justify-center">
-         <div className="  grid lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-3 grid-cols-1 mx-auto">
+         <div className="  grid lg:grid-cols-6 md:grid-cols-5 sm:grid-cols-3 grid-cols-1 mx-auto gap-8 pb-20">
     {movies &&
-    movies.map((m: any, i: number) => (
+    movies.results.map((m: any, i: number) => (
       <div
         key={i}
         className=" px-2 w-[200px] sm:w-[170px!important] hover:scale-95 duration-200 cursor-pointer "

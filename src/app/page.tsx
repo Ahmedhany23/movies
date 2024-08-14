@@ -2,8 +2,10 @@ import CategoriesGrid from "@/app/components/Categories/CategoriesGrid";
 import Movieslist from "./components/Movieslist";
 import Image from "next/image";
 import header from "@/app/assets/headerimage.webp";
+import Loading from "./components/Loading";
 
 export default function Home() {
+
   return (
     <header>
       <div className=" relative  my-[10vh] h-[250px] md:w-full  container mx-auto  shadow-lg flex items-center justify-center text-center">
@@ -18,7 +20,7 @@ export default function Home() {
           height={300}
         />
         <h1 className="text-white font-extralight text-4xl z-10">
-          Let us{" "}
+          Let us
           <strong className="  font-medium  py-[24px] mx-1">recommend</strong> a
           movie for you
         </h1>

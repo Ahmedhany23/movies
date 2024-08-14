@@ -16,8 +16,8 @@ import {
 } from "swiper/modules";
 import "swiper/css/pagination";
 const image = "https://image.tmdb.org/t/p/w500";
-export default function MovieCard({movies,path}:any) {
-    
+export default function MovieCard({movies,path,loading}:any) {
+  
   return (
     <div className=" lg:mx-3  relative ">
         <div className="swiper-button-next">
@@ -39,7 +39,7 @@ export default function MovieCard({movies,path}:any) {
           }}
           className="w-full h-[300px]"
         >
-          {movies && movies.map((m: any, i: number) => (
+          {!loading && movies.results?.map((m: any, i: number) => (
             <SwiperSlide
               key={i}
               className=" px-2 w-[170px!important] hover:scale-95 duration-200 cursor-pointer "

@@ -1,13 +1,14 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import Loading from "./Loading";
 import { getTrending } from "../redux/actions/movieAction";
 import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
-
+import {useTrending} from '../services/useTrending'
 export default function Trending() {
-  const [trending, setTrending] = useState<any>(null);
+  const {data ,isLoading} = useTrending()
+ /*  const [trending, setTrending] = useState<any>(null);
   const dispatch = useAppDispatch();
 
 
@@ -23,8 +24,8 @@ export default function Trending() {
 
   useEffect(() => {
     setTrending(dataMovies);
-  }, [dataMovies]);
-
+  }, [dataMovies]); */
+ 
   return (
     <div className="container mx-auto">
       <div className="flex justify-between py-4">
@@ -33,8 +34,8 @@ export default function Trending() {
           <Link href="/pages/trending" prefetch={false}>See More</Link>
         </button>
       </div>
-      {trending ? (
-        <MovieCard movies={trending} path={"pages/details/"} />
+      {data ? (
+        <MovieCard movies={data} path={"pages/details/"} loading={isLoading}/>
       ) : (
         <Loading />
       )}
