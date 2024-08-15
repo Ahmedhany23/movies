@@ -2,7 +2,7 @@
 import { useEffect, useState, Suspense, ReactNode } from "react";
 import Loading from "@/app/components/Loading";
 
-const useLoadingWithDelay = (delay: Number) => {
+const useLoadingWithDelay = (delay: number) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,19 +18,19 @@ export const SuspenseWithDelay = ({
   delay,
 }: {
   children: ReactNode;
-  delay: Number;
+  delay: number;
 }) => {
   const loading = useLoadingWithDelay(delay);
 
   return (
     <Suspense fallback={<Loading />}>
-      {loading ? 
-      <div className="h-screen flex items-center justify-center">
-  <Loading /> 
-      </div>
-    
-      
-      : children}
+      {loading ? (
+        <div className="h-screen flex items-center justify-center">
+          <Loading />
+        </div>
+      ) : (
+        children
+      )}
     </Suspense>
   );
 };

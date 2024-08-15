@@ -6,50 +6,23 @@ import MoviesGrid from "@/app/components/MoviesGrid";
 import { getAllMovie, getPageBySearch } from "../redux/actions/movieAction";
 import Loading from "./Loading";
 import Pagination from "./Pagination";
-import { useAppDispatch, useAppSelector } from "../redux/hooks/hooks";
-
+import { useSearch } from "@/app/services/useSearch";
+import { useCurrentPage } from "@/app/context/useCurrentPage";
 export default function SearchByTitle() {
-  const [movies, setMovies] = useState<any[]>([]);
-  const [pages, setPages] = useState(0);
-  const [page, setPage] = useState(1);
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
-  const dispatch = useAppDispatch();
-  const dataSearch = useAppSelector((state: any) => state.moviesReducer.movies);
-  const pageCount = useAppSelector(
-    (state: any) => state.moviesReducer.pageCount
-  );
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (query === "") {
-        await dispatch(getAllMovie(page));
-      } else {
-        await dispatch(getPageBySearch(query, page));
-      }
-    };
-
-    fetchData();
-  }, [query, page, dispatch]);
-
-  useEffect(() => {
-    setMovies(dataSearch);
-    setPages(pageCount);
-  }, [dataSearch, pageCount]);
+  const { currentPage } = useCurrentPage();
+  const { data, isFetching ,isLoading} = useSearch(query, currentPage);
+  
+  if(isLoading){
+    return  <div className="min-h-screen flex items-center justify-center"><Loading/></div>
+  }
 
   return (
     <div className="container mx-auto mt-32 lg:mt-16">
       <p className="text-2xl mb-5">Search Results</p>
-      {movies.length >= 1 ? <MoviesGrid movies={movies} /> : <Loading />}
-      <Pagination
-        getPage={null}
-        getPageBySearch={getPageBySearch}
-        getAllMovie={query === "" ? getAllMovie : null}
-        count={pages}
-        currentpage={page}
-        query={query}
-        id={null}
-      />
+      <MoviesGrid movies={data} isLoading={isFetching} />
+      <Pagination  count={data.total_pages}/>
     </div>
   );
 }

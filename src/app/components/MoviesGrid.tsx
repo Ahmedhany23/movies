@@ -24,10 +24,9 @@ export default function MoviesGrid({movies,isLoading}:any) {
             alt={m.title}
             width={101}
             height={100}
-            priority={true}
-    
-             loading="eager"
-            className="w-[200px] sm:w-[150px!important] h-[225px] rounded-xl "
+            className="w-[200px] sm:w-[150px!important] h-[225px] rounded-xl transition-opacity opacity-0 duration-200 "
+            onLoadingComplete={(image)=> image.classList.remove('opacity-0')}
+            
           />
           <div className="flex flex-col mt-1  ">
             <p className="text-wrap m-w-[120px] overflow-hidden text-ellipsis font-light text-[14px] ">

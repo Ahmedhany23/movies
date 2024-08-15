@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "@/app/redux/hooks/hooks";
 import { getPage } from "@/app/redux/actions/movieAction";
 import { useCategoryById } from "@/app/services/useCatgorieById";
 import { useCurrentPage } from "@/app/context/useCurrentPage";
-export default function CategorieComponent({ id }: any) {
+export default function CategorieComponent({ id }:any) {
 
   const [categories, setCategories] = useState(null);
   const [pages, setPages] = useState(null);
@@ -30,9 +30,7 @@ export default function CategorieComponent({ id }: any) {
     <div className="pt-4 mb-10 container mx-auto mt-6">
       <MoviesGrid movies={data} isLoading={isFetching} />
       <Pagination
-        getPage={useCategoryById}
         count={data.total_pages}
-        id={id}
       />
     </div>
   );

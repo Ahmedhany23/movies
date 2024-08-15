@@ -4,6 +4,6 @@ import { Suspense } from "react";
 
 export default function Search() {
   return (
-    <Suspense fallback={<Loading/>}><SearchByTitle/></Suspense>
+   <SearchByTitle/>
   )
 }
