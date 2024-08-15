@@ -3,4 +3,6 @@ export const Query_Keys = {
   CATEGORY: "category",
   CATEGORYBYID: "categoryById",
   SEARCH: "search",
+  DETAIL: "detail",
+  SIMILAR: "similar",
 };
