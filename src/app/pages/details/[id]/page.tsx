@@ -26,15 +26,15 @@ export default function Details() {
         ></div>
         <div className="container mx-auto detailMovie-container relative top-[50px]">
           <div className="flex flex-col md:flex-row gap-10 mb-10 mx-auto">
-            <div className="rounded-xl w-[198px] h-[297px] mx-auto md:mx-none bg-transparent backdrop-blur-sm">
-            <Loading/>
+            <div className="rounded-xl w-[198px] h-[297px] mx-auto md:mx-none bg-transparent backdrop-blur-sm  animate-pulse">
+            
             </div>
             <div className="flex flex-col gap-6 w-full">
-              <div className="text-white font-medium text-2xl w-full  h-4  bg-transparent backdrop-blur-sm py-2 rounded-3xl"></div>
+              <div className="text-white font-medium text-2xl w-full  h-4  bg-transparent backdrop-blur-sm py-2 rounded-3xl animate-pulse"></div>
               <div className="flex flex-col gap-10">
                
-                  <div className="pb-5 w-[300px] h-4   bg-transparent backdrop-blur-sm py-2 rounded-3xl"></div>
-                  <div className="w-[300px] h-4   bg-transparent backdrop-blur-sm py-2 rounded-3xl"></div>
+                  <div className="pb-5 w-[300px] h-4   bg-transparent backdrop-blur-sm py-2 rounded-3x animate-pulsel"></div>
+                  <div className="w-[300px] h-4   bg-transparent backdrop-blur-sm py-2 rounded-3xl animate-pulse"></div>
                 
               </div>
             </div>
