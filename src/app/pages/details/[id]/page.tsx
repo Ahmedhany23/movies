@@ -1,21 +1,17 @@
 "use client";
-import React from "react";
-import { useParams } from "next/navigation";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import Image from "next/image";
-import { FaStar } from "react-icons/fa";
-import MovieCard from "@/app/components/MovieCard";
 import Loading from "@/app/components/Loading";
-import {useMovieDetails} from "@/app/services/useMovieDetails"
-import {useSimilarMovies} from "@/app/services/useSimilarMovies"
+import MovieCard from "@/app/components/MovieCard";
+import { useMovieDetails } from "@/app/services/useMovieDetails";
+import { useSimilarMovies } from "@/app/services/useSimilarMovies";
+import Image from "next/image";
+import { useParams } from "next/navigation";
+import { FaStar } from "react-icons/fa";
 export default function Details() {
   const { id } = useParams();
- const {data : movie , isFetching} = useMovieDetails(id); 
- const {data : similar , isLoading: loadingsimilar} = useSimilarMovies(id); 
+  const { data: movie, isFetching } = useMovieDetails(id);
+  const { data: similar, isLoading: loadingsimilar } = useSimilarMovies(id);
 
-
-  if(isFetching){
+  if (isFetching) {
     return (
       <main className=" relative">
         <div
@@ -26,34 +22,26 @@ export default function Details() {
         ></div>
         <div className="container mx-auto detailMovie-container relative top-[50px]">
           <div className="flex flex-col md:flex-row gap-10 mb-10 mx-auto">
-            <div className="rounded-xl w-[198px] h-[297px] mx-auto md:mx-none bg-transparent backdrop-blur-sm  animate-pulse">
-            
-            </div>
+            <div className="rounded-xl w-[198px] h-[297px] mx-auto md:mx-none bg-transparent backdrop-blur-sm  animate-pulse"></div>
             <div className="flex flex-col gap-6 w-full">
               <div className="text-white font-medium text-2xl w-full  h-4  bg-transparent backdrop-blur-sm py-2 rounded-3xl animate-pulse"></div>
               <div className="flex flex-col gap-10">
-               
-                  <div className="pb-5 w-[300px] h-4   bg-transparent backdrop-blur-sm py-2 rounded-3x animate-pulsel"></div>
-                  <div className="w-[300px] h-4   bg-transparent backdrop-blur-sm py-2 rounded-3xl animate-pulse"></div>
-                
+                <div className="pb-5 w-[300px] h-4   bg-transparent backdrop-blur-sm py-2 rounded-3x animate-pulsel"></div>
+                <div className="w-[300px] h-4   bg-transparent backdrop-blur-sm py-2 rounded-3xl animate-pulse"></div>
               </div>
             </div>
           </div>
-          
-            <div className="flex flex-col">
-              <p className="text-2xl">Similar movies</p>
-              <div className="mt-5">
-              <Loading/>
-              </div>
+
+          <div className="flex flex-col">
+            <p className="text-2xl">Similar movies</p>
+            <div className="mt-5">
+              <Loading />
             </div>
-         
+          </div>
         </div>
       </main>
     );
   }
-
-
-
 
   return (
     <main className=" relative">
@@ -82,7 +70,7 @@ export default function Details() {
                 <p className="pb-5">{movie.tagline}</p>
                 <p>{movie.overview}</p>
                 <div className="flex gap-3 py-3">
-                  { movie.genres &&
+                  {movie.genres &&
                     movie.genres.map((g: any) => (
                       <div key={g.id}>
                         <p className="font-medium text-lg">{g.name}</p>

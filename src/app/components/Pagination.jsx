@@ -3,7 +3,6 @@ import { ChangeEvent } from "react";
 import { useCurrentPage } from "../context/useCurrentPage";
 import Pagination from "@mui/material/Pagination";
 
-
 export default function PaginationComponent({ count }) {
   const { currentPage, setCurrentPage } = useCurrentPage();
 
